@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#171717</color>
+    <color name="white">#EBEBEB</color>
+
+    <color name="accent">#EC407A</color>
+    <color name="progress">#16BF62</color>
+
+    <color name="accent_transparent">#66EC407A</color>
+    <color name="progress_transparent">#6616BF62</color>
+</resources>

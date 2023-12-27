@@ -1,0 +1,19 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.CountdownCalender" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customizing the light theme here. -->
+        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorPrimary">@color/progress</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSurface">@color/white</item>
+    </style>
+
+    <style name="Theme.CountdownCalender" parent="Base.Theme.CountdownCalender" />
+
+    <style name="CalenderViewDateCustomText">
+        <item name="colorControlActivated">@drawable/selected_day</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:weekDayTextAppearance">@color/accent</item>
+    </style>
+</resources>
