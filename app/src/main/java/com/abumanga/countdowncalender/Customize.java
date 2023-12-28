@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -26,7 +27,7 @@ public class Customize extends Progress {
     BlurMaskFilter fadingFilter = new BlurMaskFilter(fadingRadius, BlurMaskFilter.Blur.NORMAL);
 
     @SuppressLint("DefaultLocale")
-    public Customize(TextView eventLabel, TextView progressText, ProgressBar progressBar, TextView fadingYear, TextView pendingYear)
+    public Customize(TextView eventLabel, TextView progressText, ProgressBar progressBar, TextView fadingYear, TextView pendingYear, LinearLayout layout)
     {
         progressText.setText((fprogressStr.endsWith("0")) ? fprogressStr.substring(0, fprogressStr.length() - 2) + "% COMPLETE" : fprogressStr + "% COMPLETE");
         progressBar.setProgress((int) fprogress, true);
@@ -45,7 +46,7 @@ public class Customize extends Progress {
 
         Drawable eventLabelBg = eventLabel.getBackground();
 
-        colors(progressText, eventLabelBg, progressFill);
+        colors(progressText, eventLabelBg, progressFill, layout);
     }
 
     public double round(double value, int precision)
@@ -54,7 +55,7 @@ public class Customize extends Progress {
         return (double) Math.round(value * scale) / scale;
     }
 
-    public void colors(TextView progressText, Drawable eventLabelBg, Drawable progressFill){
+    public void colors(TextView progressText, Drawable eventLabelBg, Drawable progressFill, LinearLayout layout){
 
         int R, G;
         if (fprogress <= 25)
@@ -79,6 +80,7 @@ public class Customize extends Progress {
             progressFill.setColorFilter(Color.rgb(255, G, 75), PorterDuff.Mode.SRC_IN);
             eventLabelBg.setColorFilter(Color.rgb(255, G, 75), PorterDuff.Mode.SRC_IN);
             progressText.setTextColor(rgb(255, G, 75));
+            layout.getBackground().setTint(Color.rgb(255, G, 75));
         }
     }
 }

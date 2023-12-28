@@ -2,18 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/background"
     android:backgroundTintMode="multiply"
-    android:backgroundTint="@color/black"
     tools:context=".MainActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
+            android:fontFamily="@font/montserrat_regular"
             android:id="@+id/day_of"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -23,6 +24,7 @@
             android:textSize="16sp" />
 
         <TextView
+                    android:fontFamily="@font/montserrat_regular"
             android:id="@+id/current_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,6 +52,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
+                    android:fontFamily="@font/montserrat_regular"
                     android:id="@+id/months_rem"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
@@ -61,6 +64,7 @@
                     android:text="11" />
 
                 <TextView
+                    android:fontFamily="@font/montserrat_regular"
                     android:id="@+id/weeks_rem"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
@@ -72,6 +76,7 @@
                     android:text="3" />
 
                 <TextView
+                    android:fontFamily="@font/montserrat_regular"
                     android:id="@+id/days_rem"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
@@ -89,6 +94,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:fontFamily="@font/montserrat_regular"
                     android:id="@+id/months_rem_label"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
@@ -96,6 +102,7 @@
                     android:text="months" />
 
                 <TextView
+                    android:fontFamily="@font/montserrat_regular"
                     android:id="@+id/weeks_rem_label"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
@@ -104,6 +111,7 @@
                     android:text="weeks" />
 
                 <TextView
+                    android:fontFamily="@font/montserrat_regular"
                     android:id="@+id/days_rem_label"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
@@ -112,6 +120,7 @@
                     android:text="days" />
 
                 <TextView
+                    android:fontFamily="@font/montserrat_regular"
                     android:id="@+id/rem_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
@@ -134,6 +143,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:fontFamily="@font/montserrat_regular"
                     android:id="@+id/dying_year"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -142,6 +152,7 @@
                     android:textSize="24sp"
                     android:textStyle="bold" />
                 <TextView
+                    android:fontFamily="@font/montserrat_regular"
                     android:id="@+id/rising_year"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -162,6 +173,7 @@
                 android:max="100"
                 android:progress="80" />
             <TextView
+                    android:fontFamily="@font/montserrat_regular"
                 android:id="@+id/progress_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -187,6 +199,7 @@
     </LinearLayout>
 
     <TextView
+                    android:fontFamily="@font/montserrat_regular"
         android:id="@+id/event_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -1,5 +1,6 @@
 package com.abumanga.countdowncalender;
 
+import android.view.View;
 import android.widget.TextView;
 
 import java.time.Duration;
@@ -42,24 +43,44 @@ public class Progress
         {
             if (fvalues[i] > 0)
             {
-                remainingMonths.setText(String.valueOf(fvalues[i]));
-                remMonthsLabel.setText(fvalues[i] > 1 ? labels[i] + pluralize : labels[i]);
-                i++;
+                if (i < 4){
+                    remainingMonths.setText(String.valueOf(fvalues[i]));
+                    remMonthsLabel.setText(fvalues[i] > 1 ? labels[i] + pluralize : labels[i]);
+                    i++;
 
-                remainingWeeks.setText(String.valueOf(fvalues[i]));
-                remWeeksLabel.setText(fvalues[i] > 1 ? labels[i] + pluralize : labels[i]);
-                i++;
+                    remainingWeeks.setText(String.valueOf(fvalues[i]));
+                    remWeeksLabel.setText(fvalues[i] > 1 ? labels[i] + pluralize : labels[i]);
+                    i++;
 
-                remainingDays.setText(String.valueOf(fvalues[i]));
-                remDaysLabel.setText(fvalues[i] > 1 ? labels[i] + pluralize : labels[i]);
-                break;
+                    remainingDays.setText(String.valueOf(fvalues[i]));
+                    remDaysLabel.setText(fvalues[i] > 1 ? labels[i] + pluralize : labels[i]);
+                    break;
+                }
+                else if (i == 4)
+                {
+                    remainingDays.setVisibility(View.GONE);
+                    remDaysLabel.setVisibility(View.GONE);
+
+                    remainingMonths.setText(String.valueOf(fvalues[i]));
+                    remMonthsLabel.setText(fvalues[i] > 1 ? labels[i] + pluralize : labels[i]);
+                    i++;
+
+                    remainingWeeks.setText(String.valueOf(fvalues[i]));
+                    remWeeksLabel.setText(fvalues[i] > 1 ? labels[i] + pluralize : labels[i]);
+                    break;
+                }
+                else
+                {
+                    remainingDays.setVisibility(View.GONE);
+                    remDaysLabel.setVisibility(View.GONE);
+                    remainingWeeks.setVisibility(View.GONE);
+                    remWeeksLabel.setVisibility(View.GONE);
+
+                    remainingMonths.setText(String.valueOf(fvalues[i]));
+                    remMonthsLabel.setText(fvalues[i] > 1 ? labels[i] + pluralize : labels[i]);
+                    break;
+                }
             }
         }
-    }
-
-    public long progress()
-    {
-        progress = progressDuration.getSeconds();
-        return progress;
     }
 }

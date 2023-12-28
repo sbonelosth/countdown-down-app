@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.widget.CalendarView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -105,6 +106,7 @@ public class MainActivity extends AppCompatActivity
         TextView progressText = findViewById(R.id.progress_text);
         ProgressBar progressBar = findViewById(R.id.progressBar);
 
-        Customize customize = new Customize(eventLabel, progressText, progressBar, fadingYear, pendingYear);
+        LinearLayout layout = findViewById(R.id.parent_layout);
+        Customize customize = new Customize(eventLabel, progressText, progressBar, fadingYear, pendingYear, layout);
     }
 }
