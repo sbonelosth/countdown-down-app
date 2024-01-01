@@ -7,6 +7,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Date;
 
 public class Progress
 {
@@ -27,9 +28,10 @@ public class Progress
     String[] labels = {"month", "week", "day", "hour", "minute", "second"};
     String pluralize = "s";
 
+    int remainingDays = getDaysInMonth(date.getMonthValue(), date.getYear()) - date.getDayOfMonth();
     int fmonths = 12 - currentMonth;
-    int fdays = (int) remainingDuration.toDays() % 7;
-    int fweeks = (int) remainingDuration.toDays() / 7;
+    int fweeks = remainingDays / 7;
+    int fdays = remainingDays % 7;
     int fhours = (int) (remaining / 3600) % 24;
     int fminutes = (int) (remaining / 60) % 60;
     int fseconds = (int) remaining % 60;
@@ -45,15 +47,15 @@ public class Progress
             {
                 if (i < 4){
                     remainingMonths.setText(String.valueOf(fvalues[i]));
-                    remMonthsLabel.setText(fvalues[i] > 1 ? labels[i] + pluralize : labels[i]);
+                    remMonthsLabel.setText(fvalues[i] != 1 ? labels[i] + pluralize : labels[i]);
                     i++;
 
                     remainingWeeks.setText(String.valueOf(fvalues[i]));
-                    remWeeksLabel.setText(fvalues[i] > 1 ? labels[i] + pluralize : labels[i]);
+                    remWeeksLabel.setText(fvalues[i] != 1 ? labels[i] + pluralize : labels[i]);
                     i++;
 
                     remainingDays.setText(String.valueOf(fvalues[i]));
-                    remDaysLabel.setText(fvalues[i] > 1 ? labels[i] + pluralize : labels[i]);
+                    remDaysLabel.setText(fvalues[i] != 1 ? labels[i] + pluralize : labels[i]);
                     break;
                 }
                 else if (i == 4)
@@ -62,11 +64,11 @@ public class Progress
                     remDaysLabel.setVisibility(View.GONE);
 
                     remainingMonths.setText(String.valueOf(fvalues[i]));
-                    remMonthsLabel.setText(fvalues[i] > 1 ? labels[i] + pluralize : labels[i]);
+                    remMonthsLabel.setText(fvalues[i] != 1 ? labels[i] + pluralize : labels[i]);
                     i++;
 
                     remainingWeeks.setText(String.valueOf(fvalues[i]));
-                    remWeeksLabel.setText(fvalues[i] > 1 ? labels[i] + pluralize : labels[i]);
+                    remWeeksLabel.setText(fvalues[i] != 1 ? labels[i] + pluralize : labels[i]);
                     break;
                 }
                 else
@@ -77,10 +79,15 @@ public class Progress
                     remWeeksLabel.setVisibility(View.GONE);
 
                     remainingMonths.setText(String.valueOf(fvalues[i]));
-                    remMonthsLabel.setText(fvalues[i] > 1 ? labels[i] + pluralize : labels[i]);
+                    remMonthsLabel.setText(fvalues[i] != 1 ? labels[i] + pluralize : labels[i]);
                     break;
                 }
             }
         }
+    }
+
+    private int getDaysInMonth(int month, int year)
+    {
+        return new Date(year, month, 0).getDate();
     }
 }

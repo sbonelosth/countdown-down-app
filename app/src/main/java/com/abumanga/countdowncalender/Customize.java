@@ -35,8 +35,8 @@ public class Customize extends Progress {
         fadingYear.setText(String.format("%d", currentYear));
         pendingYear.setText(String.format("%d", currentYear + 1));
 
-        pendingYear.setTextColor(Color.argb((int)(255*(fprogress/100)), 235, 235, 235));
-        fadingYear.setTextColor(Color.argb((int)(255*(1-(fprogress/100))), 235, 235, 235));
+        pendingYear.setTextColor(Color.argb((int)(2.55 * fprogress), 235, 235, 235));
+        fadingYear.setTextColor(Color.argb((int)(255 * (1 - (fprogress / 100))), 235, 235, 235));
 
         pendingYear.getPaint().setMaskFilter(pendingFilter);
         fadingYear.getPaint().setMaskFilter(fadingFilter);
@@ -64,6 +64,7 @@ public class Customize extends Progress {
             progressFill.setColorFilter(Color.rgb(R,255, 75), PorterDuff.Mode.SRC_IN);
             eventLabelBg.setColorFilter(Color.rgb(R,255, 75), PorterDuff.Mode.SRC_IN);
             progressText.setTextColor(rgb(R, 255, 75));
+            layout.getBackground().setTint(Color.rgb(R, 255, 75));
         }
 
         else if (fprogress > 25 && fprogress <= 50)
@@ -72,6 +73,7 @@ public class Customize extends Progress {
             progressFill.setColorFilter(Color.rgb(R,255, 75), PorterDuff.Mode.SRC_IN);
             eventLabelBg.setColorFilter(Color.rgb(R,255, 75), PorterDuff.Mode.SRC_IN);
             progressText.setTextColor(rgb(R, 255, 75));
+            layout.getBackground().setTint(Color.rgb(R, 255, 75));
         }
 
         else

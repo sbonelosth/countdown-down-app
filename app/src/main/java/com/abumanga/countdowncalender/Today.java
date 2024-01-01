@@ -22,4 +22,14 @@ public class Today {
         String currentDateStr = date.format(formatter);
         currentDate.setText(currentDateStr);
     }
+
+    public String getToday(int year, int month, int day)
+    {
+        LocalDateTime date = LocalDateTime.of(year, month, day, 23, 59, 59);
+        int progressDay = date.getDayOfYear();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE, dd MMM");
+        String currentDateStr = date.format(formatter);
+        @SuppressLint("DefaultLocale") String finalToastMsg = String.format("Day %d: %s", progressDay, currentDateStr);
+        return finalToastMsg;
+    }
 }

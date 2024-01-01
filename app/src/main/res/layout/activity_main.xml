@@ -21,10 +21,11 @@
             android:layout_weight="1"
             android:layout_marginTop="8dp"
             android:layout_marginStart="8dp"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textColor="@color/white" />
 
         <TextView
-                    android:fontFamily="@font/montserrat_regular"
+            android:fontFamily="@font/montserrat_regular"
             android:id="@+id/current_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,7 +34,8 @@
             android:layout_marginEnd="8dp"
             android:textAllCaps="true"
             android:textAlignment="viewEnd"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 
@@ -99,6 +101,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
                     android:gravity="center"
+                    android:textColor="@color/white"
                     android:text="months" />
 
                 <TextView
@@ -108,6 +111,7 @@
                     android:layout_height="24dp"
                     android:layout_marginTop="8dp"
                     android:gravity="center"
+                    android:textColor="@color/white"
                     android:text="weeks" />
 
                 <TextView
@@ -117,6 +121,7 @@
                     android:layout_height="24dp"
                     android:layout_marginTop="8dp"
                     android:gravity="center"
+                    android:textColor="@color/white"
                     android:text="days" />
 
                 <TextView
@@ -125,6 +130,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
                     android:layout_marginTop="8dp"
+                    android:textColor="@color/white"
                     android:text="@string/remaining" />
             </LinearLayout>
         </LinearLayout>
@@ -173,7 +179,7 @@
                 android:max="100"
                 android:progress="80" />
             <TextView
-                    android:fontFamily="@font/montserrat_regular"
+                android:fontFamily="@font/montserrat_regular"
                 android:id="@+id/progress_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -184,22 +190,92 @@
         </LinearLayout>
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/month_year_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="16sp"
+        android:textColor="@color/white"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <CalendarView
-            android:id="@+id/calendarView"
-            android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginTop="45dp"
-            android:layout_marginBottom="12dp"
-            android:theme="@style/CalenderViewDateCustomText" />
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textColor="@color/accent"
+            android:text="S"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:text="M"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:text="T"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:text="W"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:text="T"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:text="F"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textColor="@color/accent"
+            android:text="S"/>
     </LinearLayout>
+    
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/calendar_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <TextView
-                    android:fontFamily="@font/montserrat_regular"
+        android:fontFamily="@font/montserrat_regular"
         android:id="@+id/event_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
