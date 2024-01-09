@@ -1,10 +1,13 @@
 package com.abumanga.countdowncalender;
 
+import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.time.LocalDate;
 
 public class CalenderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
 {
@@ -14,6 +17,7 @@ public class CalenderViewHolder extends RecyclerView.ViewHolder implements View.
         super(itemView);
         dayOfMonth = itemView.findViewById(R.id.cell_text);
         this.onItemListener = onItemListener;
+        itemView.setOnClickListener(this);
     }
 
     @Override

@@ -2,4 +2,7 @@
     <string name="app_name">Countdown Calender</string>
     <string name="remaining">remaining</string>
     <string name="merry_christmas">Day of Goodwill</string>
+    <string name="next"><![CDATA[>]]></string>
+    <string name="previous"><![CDATA[<]]></string>
+    <string name="weekly_btn_text">weekly</string>
 </resources>

@@ -3,6 +3,7 @@ package com.abumanga.countdowncalender;
 import android.annotation.SuppressLint;
 import android.widget.TextView;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -23,9 +24,11 @@ public class Today {
         currentDate.setText(currentDateStr);
     }
 
-    public String getToday(int year, int month, int day)
+    public String getToday(LocalDate selectedDate, String dayText)
     {
-        LocalDateTime date = LocalDateTime.of(year, month, day, 23, 59, 59);
+        int year = selectedDate.getYear();
+        int month = selectedDate.getMonthValue();
+        LocalDateTime date = LocalDateTime.of(year, month, Integer.parseInt(dayText), 23, 59, 59);
         int progressDay = date.getDayOfYear();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE, dd MMM");
         String currentDateStr = date.format(formatter);

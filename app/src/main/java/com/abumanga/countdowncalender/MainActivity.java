@@ -1,18 +1,17 @@
 package com.abumanga.countdowncalender;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
-import android.widget.CalendarView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,7 +21,6 @@ import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -35,9 +33,20 @@ public class MainActivity extends AppCompatActivity implements CalenderAdapter.O
     LocalDateTime date;
     int yearDays;
     int progressDay;
+    Today today = new Today();
     TextView eventLabel;
 
-    @SuppressLint("SourceLockedOrientationActivity")
+    TextView dayOfYear, currentDate;
+    TextView remainingMonths, remainingWeeks, remainingDays;
+    TextView remMonthsLabel, remWeeksLabel, remDaysLabel;
+    TextView fadingYear, pendingYear;
+    TextView progressText;
+    ProgressBar progressBar;
+    LinearLayout layout;
+
+
+
+    @SuppressLint({"SourceLockedOrientationActivity", "ClickableViewAccessibility"})
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -73,14 +82,28 @@ public class MainActivity extends AppCompatActivity implements CalenderAdapter.O
         initWidgets();
         selectedDate = LocalDate.now();
         setMonthView();
+
+        calenderRecyclerView.setOnTouchListener(new OnSwipeTouchListener(getApplicationContext()) {
+            public void onSwipeRight()
+            {
+                nextMonth(getCurrentFocus());
+                Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
+            }
+            public void onSwipeLeft()
+            {
+                previousMonth(getCurrentFocus());
+                Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
 
     private void setMonthView()
     {
+        GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
         monthYearText.setText(monthYearFromDate(selectedDate));
         ArrayList<String> daysInMonth = daysInMonthArray(selectedDate);
-        CalenderAdapter calenderAdapter = new CalenderAdapter(daysInMonth, this);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
+        CalenderAdapter calenderAdapter = new CalenderAdapter(this, daysInMonth, this);
         calenderRecyclerView.setLayoutManager(layoutManager);
         calenderRecyclerView.setAdapter(calenderAdapter);
     }
@@ -93,11 +116,17 @@ public class MainActivity extends AppCompatActivity implements CalenderAdapter.O
         LocalDate firstOfMonth = selectedDate.withDayOfMonth(1);
         int dayOfWeek = firstOfMonth.getDayOfWeek().getValue();
 
-        for (int i = 1; i <= 42 ; i++)
+        int rows = 42;
+        for (int i = 1; i <= rows; i++)
         {
             if (i <= dayOfWeek || i > daysInMonth + dayOfWeek)
             {
-                daysInMonthArray.add("");
+                if (i > 35 && daysInMonth + dayOfWeek <= 35) rows = 35;
+                else
+                {
+                    rows = 42;
+                    daysInMonthArray.add("");
+                }
             }
             else
             {
@@ -117,6 +146,26 @@ public class MainActivity extends AppCompatActivity implements CalenderAdapter.O
     {
         calenderRecyclerView = findViewById(R.id.calendar_recycler_view);
         monthYearText = findViewById(R.id.month_year_text);
+
+        dayOfYear = findViewById(R.id.day_of);
+        currentDate = findViewById(R.id.current_date);
+
+        remainingMonths = findViewById(R.id.months_rem);
+        remainingWeeks = findViewById(R.id.weeks_rem);
+        remainingDays = findViewById(R.id.days_rem);
+
+        remMonthsLabel = findViewById(R.id.months_rem_label);
+        remWeeksLabel = findViewById(R.id.weeks_rem_label);
+        remDaysLabel = findViewById(R.id.days_rem_label);
+
+        fadingYear = findViewById(R.id.dying_year);
+        pendingYear = findViewById(R.id.rising_year);
+
+        progressText = findViewById(R.id.progress_text);
+        progressBar = findViewById(R.id.progressBar);
+
+        layout = findViewById(R.id.parent_layout);
+
     }
 
     public void previousMonth(View view)
@@ -127,50 +176,35 @@ public class MainActivity extends AppCompatActivity implements CalenderAdapter.O
 
     public void nextMonth(View view)
     {
-        selectedDate.plusMonths(1);
+        selectedDate = selectedDate.plusMonths(1);
         setMonthView();
     }
 
     @SuppressLint("DefaultLocale")
     public void countDown()
     {
-        TextView dayOf = findViewById(R.id.day_of);
-        TextView currentDate = findViewById(R.id.current_date);
-
-        Today today = new Today();
-        today.setToday(dayOf, currentDate);
+        initWidgets();
+        today.setToday(dayOfYear, currentDate);
         today.getToday(date, progressDay, yearDays);
-
-        TextView remainingMonths = findViewById(R.id.months_rem);
-        TextView remainingWeeks = findViewById(R.id.weeks_rem);
-        TextView remainingDays = findViewById(R.id.days_rem);
-
-        TextView remMonthsLabel = findViewById(R.id.months_rem_label);
-        TextView remWeeksLabel = findViewById(R.id.weeks_rem_label);
-        TextView remDaysLabel = findViewById(R.id.days_rem_label);
 
         Progress progressObj = new Progress();
         progressObj.setProgress(remainingMonths, remainingWeeks, remainingDays, remMonthsLabel, remWeeksLabel, remDaysLabel);
 
-        TextView fadingYear, pendingYear;
-
-        fadingYear = findViewById(R.id.dying_year);
-        pendingYear = findViewById(R.id.rising_year);
-
-        TextView progressText = findViewById(R.id.progress_text);
-        ProgressBar progressBar = findViewById(R.id.progressBar);
-
-        LinearLayout layout = findViewById(R.id.parent_layout);
         Customize customize = new Customize(eventLabel, progressText, progressBar, fadingYear, pendingYear, layout);
     }
 
     @Override
     public void onItemClick(int position, String dayText)
     {
-        if (dayText.equals(""))
+        if (!dayText.equals(""))
         {
-            String message = "Selected Date: " + dayText + " " + monthYearFromDate(selectedDate);
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+            String msg = today.getToday(selectedDate, dayText);
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void weeklyAction(View view)
+    {
+        startActivity(new Intent(this, WeekViewActivity.class));
     }
 }

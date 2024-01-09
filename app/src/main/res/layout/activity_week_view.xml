@@ -9,7 +9,7 @@
     android:background="@drawable/background"
     android:backgroundTint="#BB000000"
     android:backgroundTintMode="src_atop"
-    tools:context=".MainActivity">
+    tools:context=".WeekViewActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -157,7 +157,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:fontFamily="@font/montserrat_regular"
+                    android:fontFamily="@font/sallyrose"
                     android:id="@+id/dying_year"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -167,7 +167,7 @@
                     android:textStyle="bold"
                     android:letterSpacing="0.1"/>
                 <TextView
-                    android:fontFamily="@font/montserrat_regular"
+                    android:fontFamily="@font/sallyrose"
                     android:id="@+id/rising_year"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -204,26 +204,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
-        <Button
-            android:visibility="gone"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:gravity="center"
-            android:text="@string/weekly_btn_text"
-            android:textAllCaps="true"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:fontFamily="@font/montserrat_regular"
-            android:background="@drawable/custom_progress"
-            android:onClick="weeklyAction"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
@@ -236,7 +216,7 @@
             android:background="@drawable/baseline_arrow_back_ios_new_24"
             android:textStyle="bold"
             android:textSize="24sp"
-            android:onClick="previousMonth"/>
+            android:onClick="previousWeekAction"/>
 
         <TextView
             android:id="@+id/month_year_text"
@@ -257,7 +237,7 @@
             android:background="@drawable/baseline_arrow_forward_ios_24"
             android:textStyle="bold"
             android:textSize="24sp"
-            android:onClick="nextMonth"/>
+            android:onClick="nextWeekAction"/>
 
     </LinearLayout>
 
