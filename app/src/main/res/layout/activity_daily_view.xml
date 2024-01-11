@@ -205,7 +205,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:gravity="center"
-            android:text="@string/daily_view"
+            android:text="@string/weekly_btn_text"
             android:textAllCaps="true"
             android:textStyle="bold"
             android:textColor="@color/red"
