@@ -2,7 +2,31 @@
     <string name="app_name">Countdown Calender</string>
     <string name="remaining">remaining</string>
     <string name="merry_christmas">Day of Goodwill</string>
-    <string name="next"><![CDATA[>]]></string>
-    <string name="previous"><![CDATA[<]]></string>
-    <string name="weekly_btn_text">weekly</string>
+    <string name="weekly_btn_text">weekly view</string>
+    <string name="new_event_txt">new event</string>
+    <string name="event_name">Event Name</string>
+    <string name="save">save</string>
+    <string name="time">time:</string>
+    <string name="new_event">new event</string>
+    <string name="date">date:</string>
+    <string name="daily_view">daily view</string>
+
+    <string-array name="quotes">
+        <item>The trouble is, you think you think you have time.\n~ J. Kornfield</item>
+        <item>Time is extremely valuable.\n~ Kanye West</item>
+        <item>There\'s never enough time to do all the nothing you want.\n~ B. Watterson</item>
+        <item>Oh yes, the past can hurt. But you can either run from it or learn from it.\n~ Rafiki (The Lion King)</item>
+        <item>Today is a good day to try.\n~ Quasimodo (The Hunchback of Notre Dame)</item>
+        <item>You may not own this day, but you can use it.\n~ H. Mackey</item>
+        <item>Time is money.\n~ B. Franklin</item>
+        <item>Time is a storm in which we are all lost.\n~ W. C. Williams</item>
+        <item>Suspect each moment, for it is a thief, tiptoeing away with more than it brings.\n~ J. Updike</item>
+        <item>Men talk of killing time, while time quietly kills them.\n~ D. Boucicault</item>
+        <item>Regret for wasted time is more wasted time.\n~ M. Cooley</item>
+        <item>Time spent with cats is never wasted.\n~ Colette</item>
+        <item>The way we spend our time defines who we are.\n~ J. Estrin</item>
+        <item>It\'s not that we have little time, but more that we waste a good deal of it.\n~ Seneca</item>
+        <item>Either you run the day, or the day runs you.\n~ J. Rohn</item>
+        <item>If we take care of the moments, the years will take care of themselves.\n~ M. Edgeworth</item>
+    </string-array>
 </resources>

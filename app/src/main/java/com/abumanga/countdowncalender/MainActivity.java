@@ -1,12 +1,17 @@
 package com.abumanga.countdowncalender;
 
+import static com.abumanga.countdowncalender.CalendarUtils.daysInMonthArray;
+import static com.abumanga.countdowncalender.CalendarUtils.monthYearFromDate;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -18,17 +23,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.YearMonth;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainActivity extends AppCompatActivity implements CalenderAdapter.OnItemListener
+public class MainActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener
 {
     private TextView monthYearText;
-    private RecyclerView calenderRecyclerView;
-    private LocalDate selectedDate;
+    private RecyclerView calendarRecyclerView;
 
     LocalDateTime date;
     int yearDays;
@@ -39,12 +41,9 @@ public class MainActivity extends AppCompatActivity implements CalenderAdapter.O
     TextView dayOfYear, currentDate;
     TextView remainingMonths, remainingWeeks, remainingDays;
     TextView remMonthsLabel, remWeeksLabel, remDaysLabel;
-    TextView fadingYear, pendingYear;
-    TextView progressText;
+
+    TextView fadingYear, pendingYear, progressText;
     ProgressBar progressBar;
-    LinearLayout layout;
-
-
 
     @SuppressLint({"SourceLockedOrientationActivity", "ClickableViewAccessibility"})
     @Override
@@ -77,22 +76,24 @@ public class MainActivity extends AppCompatActivity implements CalenderAdapter.O
 
         timer.schedule(task, 0, 1000);
 
-        Quotes quotes = new Quotes(eventLabel);
+        String[] quotesArray = getResources().getStringArray(R.array.quotes);
+        Quotes quotes = new Quotes(eventLabel, quotesArray);
 
         initWidgets();
-        selectedDate = LocalDate.now();
+        CalendarUtils.selectedDate = LocalDate.now();
         setMonthView();
 
-        calenderRecyclerView.setOnTouchListener(new OnSwipeTouchListener(getApplicationContext()) {
+        calendarRecyclerView.setOnTouchListener(new OnSwipeTouchListener(getApplicationContext())
+        {
             public void onSwipeRight()
-            {
-                nextMonth(getCurrentFocus());
-                Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
-            }
-            public void onSwipeLeft()
             {
                 previousMonth(getCurrentFocus());
                 Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
+            }
+            public void onSwipeLeft()
+            {
+                nextMonth(getCurrentFocus());
+                Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -101,50 +102,16 @@ public class MainActivity extends AppCompatActivity implements CalenderAdapter.O
     private void setMonthView()
     {
         GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
-        monthYearText.setText(monthYearFromDate(selectedDate));
-        ArrayList<String> daysInMonth = daysInMonthArray(selectedDate);
-        CalenderAdapter calenderAdapter = new CalenderAdapter(this, daysInMonth, this);
-        calenderRecyclerView.setLayoutManager(layoutManager);
-        calenderRecyclerView.setAdapter(calenderAdapter);
-    }
-
-    private ArrayList<String> daysInMonthArray(LocalDate date)
-    {
-        ArrayList<String> daysInMonthArray = new ArrayList<>();
-        YearMonth yearMonth = YearMonth.from(date);
-        int daysInMonth = yearMonth.lengthOfMonth();
-        LocalDate firstOfMonth = selectedDate.withDayOfMonth(1);
-        int dayOfWeek = firstOfMonth.getDayOfWeek().getValue();
-
-        int rows = 42;
-        for (int i = 1; i <= rows; i++)
-        {
-            if (i <= dayOfWeek || i > daysInMonth + dayOfWeek)
-            {
-                if (i > 35 && daysInMonth + dayOfWeek <= 35) rows = 35;
-                else
-                {
-                    rows = 42;
-                    daysInMonthArray.add("");
-                }
-            }
-            else
-            {
-                daysInMonthArray.add(String.valueOf(i - dayOfWeek));
-            }
-        }
-        return daysInMonthArray;
-    }
-
-    private String monthYearFromDate(LocalDate date)
-    {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM yyyy");
-        return date.format(formatter);
+        monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate));
+        ArrayList<LocalDate> daysInMonth = daysInMonthArray(CalendarUtils.selectedDate);
+        CalendarAdapter calendarAdapter = new CalendarAdapter(this, daysInMonth, this);
+        calendarRecyclerView.setLayoutManager(layoutManager);
+        calendarRecyclerView.setAdapter(calendarAdapter);
     }
 
     private void initWidgets()
     {
-        calenderRecyclerView = findViewById(R.id.calendar_recycler_view);
+        calendarRecyclerView = findViewById(R.id.calendar_recycler_view);
         monthYearText = findViewById(R.id.month_year_text);
 
         dayOfYear = findViewById(R.id.day_of);
@@ -158,25 +125,21 @@ public class MainActivity extends AppCompatActivity implements CalenderAdapter.O
         remWeeksLabel = findViewById(R.id.weeks_rem_label);
         remDaysLabel = findViewById(R.id.days_rem_label);
 
-        fadingYear = findViewById(R.id.dying_year);
-        pendingYear = findViewById(R.id.rising_year);
-
+        fadingYear = findViewById(R.id.fading_year);
+        pendingYear = findViewById(R.id.pending_year);
         progressText = findViewById(R.id.progress_text);
-        progressBar = findViewById(R.id.progressBar);
-
-        layout = findViewById(R.id.parent_layout);
-
+        progressBar = findViewById(R.id.progress_bar);
     }
 
     public void previousMonth(View view)
     {
-        selectedDate = selectedDate.minusMonths(1);
+        CalendarUtils.selectedDate = CalendarUtils.selectedDate.minusMonths(1);
         setMonthView();
     }
 
     public void nextMonth(View view)
     {
-        selectedDate = selectedDate.plusMonths(1);
+        CalendarUtils.selectedDate = CalendarUtils.selectedDate.plusMonths(1);
         setMonthView();
     }
 
@@ -190,15 +153,17 @@ public class MainActivity extends AppCompatActivity implements CalenderAdapter.O
         Progress progressObj = new Progress();
         progressObj.setProgress(remainingMonths, remainingWeeks, remainingDays, remMonthsLabel, remWeeksLabel, remDaysLabel);
 
-        Customize customize = new Customize(eventLabel, progressText, progressBar, fadingYear, pendingYear, layout);
+        Customize customize = new Customize(fadingYear, pendingYear, progressBar, progressText);
     }
 
     @Override
-    public void onItemClick(int position, String dayText)
+    public void onItemClick(int position, String dayText, LocalDate date)
     {
-        if (!dayText.equals(""))
+        if (!dayText.equals("") || date != null)
         {
-            String msg = today.getToday(selectedDate, dayText);
+            CalendarUtils.selectedDate = date;
+            setMonthView();
+            String msg = today.getToday(CalendarUtils.selectedDate, dayText);
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         }
     }
@@ -206,5 +171,11 @@ public class MainActivity extends AppCompatActivity implements CalenderAdapter.O
     public void weeklyAction(View view)
     {
         startActivity(new Intent(this, WeekViewActivity.class));
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

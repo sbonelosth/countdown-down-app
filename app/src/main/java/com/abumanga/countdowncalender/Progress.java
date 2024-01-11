@@ -45,15 +45,26 @@ public class Progress
         {
             if (fvalues[i] > 0)
             {
-                if (i < 4){
+                if (i < 4)
+                {
                     remainingMonths.setText(String.valueOf(fvalues[i]));
                     remMonthsLabel.setText(fvalues[i] != 1 ? labels[i] + pluralize : labels[i]);
                     i++;
 
+                    if (fvalues[i] == 0)
+                    {
+                        remainingWeeks.setVisibility(View.GONE);
+                        remWeeksLabel.setVisibility(View.GONE);
+                    }
                     remainingWeeks.setText(String.valueOf(fvalues[i]));
                     remWeeksLabel.setText(fvalues[i] != 1 ? labels[i] + pluralize : labels[i]);
                     i++;
 
+                    if (fvalues[i] == 0)
+                    {
+                        remainingDays.setVisibility(View.GONE);
+                        remDaysLabel.setVisibility(View.GONE);
+                    }
                     remainingDays.setText(String.valueOf(fvalues[i]));
                     remDaysLabel.setText(fvalues[i] != 1 ? labels[i] + pluralize : labels[i]);
                     break;
@@ -66,6 +77,12 @@ public class Progress
                     remainingMonths.setText(String.valueOf(fvalues[i]));
                     remMonthsLabel.setText(fvalues[i] != 1 ? labels[i] + pluralize : labels[i]);
                     i++;
+
+                    if (fvalues[i] == 0)
+                    {
+                        remainingWeeks.setVisibility(View.GONE);
+                        remWeeksLabel.setVisibility(View.GONE);
+                    }
 
                     remainingWeeks.setText(String.valueOf(fvalues[i]));
                     remWeeksLabel.setText(fvalues[i] != 1 ? labels[i] + pluralize : labels[i]);

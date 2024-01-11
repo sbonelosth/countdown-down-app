@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/parent_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -13,6 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:orientation="horizontal">
         <TextView
             android:fontFamily="@font/montserrat_regular"
@@ -20,11 +20,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="8dp"
-            android:textSize="16sp"
             android:textColor="@color/white"
-            android:letterSpacing="0.2"/>
+            android:letterSpacing="0.1"/>
 
         <TextView
             android:fontFamily="@font/montserrat_regular"
@@ -32,26 +29,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
             android:textAllCaps="true"
             android:textAlignment="viewEnd"
-            android:textSize="16sp"
             android:textColor="@color/white"
-            android:letterSpacing="0.2"/>
+            android:letterSpacing="0.1"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:orientation="horizontal">
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp">
+            android:layout_weight="1"
+            android:orientation="horizontal">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -64,9 +58,9 @@
                     android:layout_marginBottom="8dp"
                     android:textAlignment="center"
                     android:gravity="center"
-                    android:background="@drawable/rem_bg"
+                    android:background="@drawable/remaining_bg"
                     android:textColor="@color/black"
-                    android:letterSpacing="0.2"
+                    android:letterSpacing="0.1"
                     android:text="11" />
 
                 <TextView
@@ -77,7 +71,7 @@
                     android:layout_marginBottom="8dp"
                     android:textAlignment="center"
                     android:gravity="center"
-                    android:background="@drawable/rem_bg"
+                    android:background="@drawable/remaining_bg"
                     android:textColor="@color/black"
                     android:text="3" />
 
@@ -88,14 +82,15 @@
                     android:layout_height="24dp"
                     android:textAlignment="center"
                     android:gravity="center"
-                    android:background="@drawable/rem_bg"
+                    android:background="@drawable/remaining_bg"
                     android:textColor="@color/black"
                     android:text="5" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="174dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:layout_marginStart="8dp"
                 android:orientation="vertical">
 
@@ -106,7 +101,7 @@
                     android:layout_height="24dp"
                     android:gravity="center"
                     android:textColor="@color/white"
-                    android:letterSpacing="0.2"
+                    android:letterSpacing="0.1"
                     android:text="months" />
 
                 <TextView
@@ -117,7 +112,7 @@
                     android:layout_marginTop="8dp"
                     android:gravity="center"
                     android:textColor="@color/white"
-                    android:letterSpacing="0.2"
+                    android:letterSpacing="0.1"
                     android:text="weeks" />
 
                 <TextView
@@ -128,7 +123,7 @@
                     android:layout_marginTop="8dp"
                     android:gravity="center"
                     android:textColor="@color/white"
-                    android:letterSpacing="0.2"
+                    android:letterSpacing="0.1"
                     android:text="days" />
 
                 <TextView
@@ -138,27 +133,25 @@
                     android:layout_height="24dp"
                     android:layout_marginTop="8dp"
                     android:textColor="@color/white"
-                    android:letterSpacing="0.2"
+                    android:letterSpacing="0.1"
                     android:text="@string/remaining" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="16dp">
+            android:layout_weight="1"
+            android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
                     android:fontFamily="@font/montserrat_regular"
-                    android:id="@+id/dying_year"
+                    android:id="@+id/fading_year"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="8dp"
@@ -168,7 +161,7 @@
                     android:letterSpacing="0.1"/>
                 <TextView
                     android:fontFamily="@font/montserrat_regular"
-                    android:id="@+id/rising_year"
+                    android:id="@+id/pending_year"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textSize="24sp"
@@ -179,10 +172,10 @@
             </LinearLayout>
 
             <ProgressBar
-                android:id="@+id/progressBar"
+                android:id="@+id/progress_bar"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
-                android:layout_height="16dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:progressDrawable="@drawable/custom_progress"
@@ -193,10 +186,9 @@
                 android:id="@+id/progress_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:textColor="@color/progress"
                 android:textAllCaps="true"
-                android:letterSpacing="0.2"
+                android:letterSpacing="0.1"
                 android:textAlignment="center"/>
         </LinearLayout>
     </LinearLayout>
@@ -207,15 +199,15 @@
         android:gravity="center"
         android:orientation="horizontal">
         <Button
-            android:visibility="gone"
-            android:layout_width="150dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:gravity="center"
             android:text="@string/weekly_btn_text"
             android:textAllCaps="true"
             android:textStyle="bold"
-            android:textSize="18sp"
+            android:textColor="@color/red"
+            android:letterSpacing="0.1"
             android:fontFamily="@font/montserrat_regular"
             android:background="@drawable/custom_progress"
             android:onClick="weeklyAction"/>
@@ -225,55 +217,56 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
         android:orientation="horizontal">
 
         <Button
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_margin="8dp"
+            android:layout_marginStart="16dp"
             android:background="@drawable/baseline_arrow_back_ios_new_24"
+            android:theme="@style/Buttons"
             android:textStyle="bold"
-            android:textSize="24sp"
+            android:textSize="30sp"
             android:onClick="previousMonth"/>
 
         <TextView
             android:id="@+id/month_year_text"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:textAlignment="center"
             android:gravity="center"
             android:textAllCaps="true"
-            android:textSize="16sp"
+            android:textSize="14sp"
+            android:letterSpacing="0.1"
             android:fontFamily="@font/montserrat_regular"
             android:textColor="@color/white"/>
 
         <Button
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_margin="8dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/baseline_arrow_forward_ios_24"
+            android:theme="@style/Buttons"
             android:textStyle="bold"
-            android:textSize="24sp"
+            android:textSize="30sp"
             android:onClick="nextMonth"/>
-
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp">
+        android:layout_margin="8dp">
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textAlignment="center"
             android:textSize="16sp"
-            android:textColor="#99EC407A"
+            android:textColor="@color/red_transparent"
             android:fontFamily="@font/montserrat_regular"
             android:text="S"/>
 
@@ -283,7 +276,7 @@
             android:layout_weight="1"
             android:textAlignment="center"
             android:textSize="16sp"
-            android:textColor="#99EBEBEB"
+            android:textColor="@color/white_transparent"
             android:fontFamily="@font/montserrat_regular"
             android:text="M"/>
 
@@ -293,7 +286,7 @@
             android:layout_weight="1"
             android:textAlignment="center"
             android:textSize="16sp"
-            android:textColor="#99EBEBEB"
+            android:textColor="@color/white_transparent"
             android:fontFamily="@font/montserrat_regular"
             android:text="T"/>
 
@@ -303,7 +296,7 @@
             android:layout_weight="1"
             android:textAlignment="center"
             android:textSize="16sp"
-            android:textColor="#99EBEBEB"
+            android:textColor="@color/white_transparent"
             android:fontFamily="@font/montserrat_regular"
             android:text="W"/>
 
@@ -313,7 +306,7 @@
             android:layout_weight="1"
             android:textAlignment="center"
             android:textSize="16sp"
-            android:textColor="#99EBEBEB"
+            android:textColor="@color/white_transparent"
             android:fontFamily="@font/montserrat_regular"
             android:text="T"/>
 
@@ -323,7 +316,7 @@
             android:layout_weight="1"
             android:textAlignment="center"
             android:textSize="16sp"
-            android:textColor="#99EBEBEB"
+            android:textColor="@color/white_transparent"
             android:fontFamily="@font/montserrat_regular"
             android:text="F"/>
 
@@ -333,7 +326,7 @@
             android:layout_weight="1"
             android:textAlignment="center"
             android:textSize="16sp"
-            android:textColor="#99EBEBEB"
+            android:textColor="@color/white_transparent"
             android:fontFamily="@font/montserrat_regular"
             android:text="S"/>
     </LinearLayout>
@@ -341,22 +334,23 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/calendar_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="400dp" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:paddingBottom="2dp" />
 
     <TextView
         android:fontFamily="@font/montserrat_regular"
         android:id="@+id/event_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:textAlignment="center"
         android:padding="8dp"
-        android:background="@drawable/event_label_bg"
         android:textColor="@color/white"
         android:letterSpacing="0.1"
         android:text="@string/app_name"/>
-
 
 </LinearLayout>

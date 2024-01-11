@@ -2,10 +2,13 @@
 <resources>
     <color name="black">#171717</color>
     <color name="white">#EBEBEB</color>
-
-    <color name="accent">#EC407A</color>
+    <color name="accent">#232323</color>
     <color name="progress">#16BF62</color>
-
-    <color name="accent_transparent">#66EC407A</color>
+    <color name="accent_transparent">#66232323</color>
     <color name="progress_transparent">#6616BF62</color>
+    <color name="red">#EC407A</color>
+    <color name="red_transparent">#99EC407A</color>
+    <color name="white_transparent">#99EBEBEB</color>
+    <color name="blue">#87CDEE</color>
+    <color name="light_black">#2F2F2F</color>
 </resources>

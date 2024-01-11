@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/parent_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/background"
     android:backgroundTint="#BB000000"
     android:backgroundTintMode="src_atop"
-    tools:context=".WeekViewActivity">
+    tools:context=".DailyViewActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -212,7 +212,7 @@
             android:letterSpacing="0.1"
             android:fontFamily="@font/montserrat_regular"
             android:background="@drawable/custom_progress"
-            android:onClick="dailyAction"/>
+            android:onClick="weeklyAction"/>
     </LinearLayout>
 
 
@@ -232,10 +232,10 @@
             android:theme="@style/Buttons"
             android:textStyle="bold"
             android:textSize="30sp"
-            android:onClick="previousWeekAction"/>
+            android:onClick="previousDayAction"/>
 
         <TextView
-            android:id="@+id/month_year_text"
+            android:id="@+id/month_day_text"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -255,99 +255,20 @@
             android:theme="@style/Buttons"
             android:textStyle="bold"
             android:textSize="30sp"
-            android:onClick="nextWeekAction"/>
+            android:onClick="nextDayAction"/>
     </LinearLayout>
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/day_of_week"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="8dp">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:textColor="@color/red_transparent"
-            android:fontFamily="@font/montserrat_regular"
-            android:text="S"/>
+        android:layout_marginBottom="20dp"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="16sp"
+        android:textColor="@color/white_transparent"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="monday"/>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:textColor="@color/white_transparent"
-            android:fontFamily="@font/montserrat_regular"
-            android:text="M"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:textColor="@color/white_transparent"
-            android:fontFamily="@font/montserrat_regular"
-            android:text="T"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:textColor="@color/white_transparent"
-            android:fontFamily="@font/montserrat_regular"
-            android:text="W"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:textColor="@color/white_transparent"
-            android:fontFamily="@font/montserrat_regular"
-            android:text="T"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:textColor="@color/white_transparent"
-            android:fontFamily="@font/montserrat_regular"
-            android:text="F"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:textColor="@color/white_transparent"
-            android:fontFamily="@font/montserrat_regular"
-            android:text="S"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.5"
-        android:paddingBottom="8dp">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/calendar_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp" />
-    </LinearLayout>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -363,9 +284,10 @@
         android:onClick="newEventAction"/>
 
     <ListView
-        android:id="@+id/events_list"
+        android:id="@+id/events_list_hourly"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"/>
+
 
 </LinearLayout>
