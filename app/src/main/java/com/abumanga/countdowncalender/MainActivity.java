@@ -8,13 +8,9 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,10 +19,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener
 {
@@ -34,7 +28,6 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     private RecyclerView calendarRecyclerView;
 
     LocalDate date;
-    Today today = new Today();
     TextView eventLabel;
     TextView dayOfYear, currentDate;
 
@@ -53,14 +46,11 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         String[] quotesArray = getResources().getStringArray(R.array.quotes);
         setQuote(eventLabel, quotesArray);
 
-        today.setToday(dayOfYear, currentDate);
-        today.getToday();
-
-        CalendarUtils.selectedDate = LocalDate.now();
+        selectedDate = LocalDate.now();
         setMonthView();
 
         LayoutInflater inflater = LayoutInflater.from(this);
-        View progressView = inflater.inflate(R.layout.activity_progress, (ViewGroup) getCurrentFocus(), false);
+        View progressView = inflater.inflate(R.layout.progress_views, (ViewGroup) getCurrentFocus(), false);
 
         ProgressObject progressObject = new ProgressObject(progressView);
         progressObject.countDown();
@@ -85,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     private void setMonthView()
     {
         GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
-        monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate));
+        monthYearText.setText(monthYearFromDate(selectedDate));
         ArrayList<LocalDate> daysInMonth = daysInMonthArray();
         CalendarAdapter calendarAdapter = new CalendarAdapter(this, daysInMonth, this);
         calendarRecyclerView.setLayoutManager(layoutManager);
@@ -99,27 +89,27 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
 
         eventLabel = findViewById(R.id.event_label);
 
-        dayOfYear = findViewById(R.id.day_of);
+        dayOfYear = findViewById(R.id.day_of_year);
         currentDate = findViewById(R.id.current_date);
     }
 
     public void previousMonth(View view)
     {
-        CalendarUtils.selectedDate = CalendarUtils.selectedDate.minusMonths(1);
+        selectedDate = selectedDate.minusMonths(1);
         setMonthView();
     }
 
     public void nextMonth(View view)
     {
-        CalendarUtils.selectedDate = CalendarUtils.selectedDate.plusMonths(1);
+        selectedDate = selectedDate.plusMonths(1);
         setMonthView();
     }
     @Override
     public void onItemClick(int position, LocalDate date)
     {
-        CalendarUtils.selectedDate = date;
+        selectedDate = date;
         setMonthView();
-        Toast.makeText(this, today.getToday(CalendarUtils.selectedDate), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, CalendarUtils.getToday(selectedDate), Toast.LENGTH_SHORT).show();
     }
 
     public void weeklyAction(View view)

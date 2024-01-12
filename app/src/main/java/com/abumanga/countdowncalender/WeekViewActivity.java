@@ -1,8 +1,8 @@
 package com.abumanga.countdowncalender;
 
-import static com.abumanga.countdowncalender.CalendarUtils.daysInMonthArray;
 import static com.abumanga.countdowncalender.CalendarUtils.daysInWeekArray;
 import static com.abumanga.countdowncalender.CalendarUtils.monthYearFromDate;
+import static com.abumanga.countdowncalender.CalendarUtils.selectedDate;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -28,18 +28,16 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
 
     private ListView eventsListView;
 
-    Today today = new Today();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_week_view);
         initWidgets();
-        CalendarUtils.selectedDate = LocalDate.now();
+        selectedDate = LocalDate.now();
         setWeekView();
 
         LayoutInflater inflater = LayoutInflater.from(this);
-        View progressView = inflater.inflate(R.layout.activity_progress, (ViewGroup) getCurrentFocus(), false);
+        View progressView = inflater.inflate(R.layout.progress_views, (ViewGroup) getCurrentFocus(), false);
         ProgressObject progressObject = new ProgressObject(progressView);
         progressObject.countDown();
 
@@ -50,8 +48,8 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     private void setWeekView()
     {
         GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
-        monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate));
-        ArrayList<LocalDate> days = daysInWeekArray(CalendarUtils.selectedDate);
+        monthYearText.setText(monthYearFromDate(selectedDate));
+        ArrayList<LocalDate> days = daysInWeekArray(selectedDate);
         CalendarAdapter calendarAdapter = new CalendarAdapter(this, days, this);
         calendarRecyclerView.setLayoutManager(layoutManager);
         calendarRecyclerView.setAdapter(calendarAdapter);
@@ -67,13 +65,13 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
 
     public void nextWeekAction(View view)
     {
-        CalendarUtils.selectedDate = CalendarUtils.selectedDate.plusWeeks(1);
+        selectedDate = selectedDate.plusWeeks(1);
         setWeekView();
     }
 
     public void previousWeekAction(View view)
     {
-        CalendarUtils.selectedDate = CalendarUtils.selectedDate.minusWeeks(1);
+        selectedDate = selectedDate.minusWeeks(1);
         setWeekView();
     }
 
@@ -86,7 +84,7 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
 
     private void setEventAdapter()
     {
-        ArrayList<Event> dailyEvents = Event.eventsForDate(CalendarUtils.selectedDate);
+        ArrayList<Event> dailyEvents = Event.eventsForDate(selectedDate);
         EventAdapter eventAdapter = new EventAdapter(getApplicationContext(), dailyEvents);
         eventsListView.setAdapter(eventAdapter);
     }
@@ -100,9 +98,9 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     @Override
     public void onItemClick(int position, LocalDate date)
     {
-        CalendarUtils.selectedDate = date;
+        selectedDate = date;
         setWeekView();
-        Toast.makeText(this, today.getToday(CalendarUtils.selectedDate), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, CalendarUtils.getToday(selectedDate), Toast.LENGTH_SHORT).show();
     }
 
     public void dailyAction(View view)

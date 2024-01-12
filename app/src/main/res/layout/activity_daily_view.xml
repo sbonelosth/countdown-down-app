@@ -12,33 +12,6 @@
     tools:context=".DailyViewActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:orientation="horizontal">
-        <TextView
-            android:fontFamily="@font/montserrat_regular"
-            android:id="@+id/day_of"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/white"
-            android:letterSpacing="0.1"/>
-
-        <TextView
-            android:fontFamily="@font/montserrat_regular"
-            android:id="@+id/current_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAllCaps="true"
-            android:textAlignment="viewEnd"
-            android:textColor="@color/white"
-            android:letterSpacing="0.1"/>
-
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/root_daily"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

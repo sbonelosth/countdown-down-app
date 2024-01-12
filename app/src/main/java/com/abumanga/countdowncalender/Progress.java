@@ -65,6 +65,8 @@ public class Progress
                 remainingLabels[i].setText((value != 1) ? label + pluralize : label);
             }
         }
+
+        progressObject.getToday();
     }
 
     private int getDaysInMonth(int month, int year)

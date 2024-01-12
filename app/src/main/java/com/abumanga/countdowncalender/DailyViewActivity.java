@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.time.LocalTime;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -33,7 +32,7 @@ public class DailyViewActivity extends AppCompatActivity
         initWidgets();
 
         LayoutInflater inflater = LayoutInflater.from(this);
-        View progressView = inflater.inflate(R.layout.activity_progress, (ViewGroup) getCurrentFocus(), false);
+        View progressView = inflater.inflate(R.layout.progress_views, (ViewGroup) getCurrentFocus(), false);
         ProgressObject progressObject = new ProgressObject(progressView);
         progressObject.countDown();
 

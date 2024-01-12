@@ -1,11 +1,13 @@
 package com.abumanga.countdowncalender;
 
+import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.time.LocalDate;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -21,9 +23,14 @@ public class ProgressObject
     private final TextView pendingYear;
     private final TextView progressText;
     private final ProgressBar progressBar;
+    private final TextView dayOfYear;
+    private final TextView currentDate;
 
     public ProgressObject(View view)
     {
+        dayOfYear = view.findViewById(R.id.day_of_year);
+        currentDate = view.findViewById(R.id.current_date);
+
         remainingMonths = view.findViewById(R.id.months_rem);
         remainingWeeks = view.findViewById(R.id.weeks_rem);
         remainingDays = view.findViewById(R.id.days_rem);
@@ -60,6 +67,14 @@ public class ProgressObject
 
     public TextView getRemDaysLabel() {
         return remDaysLabel;
+    }
+
+    @SuppressLint("DefaultLocale")
+    public void getToday()
+    {
+        LocalDate date = LocalDate.now();
+        dayOfYear.setText(String.format("Day %d of %d", date.getDayOfYear(), date.lengthOfYear()));
+        currentDate.setText(CalendarUtils.formattedToday(date));
     }
 
 

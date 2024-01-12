@@ -1,5 +1,7 @@
 package com.abumanga.countdowncalender;
 
+import android.annotation.SuppressLint;
+
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import java.time.DayOfWeek;
@@ -41,6 +43,13 @@ public class CalendarUtils
     {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE, dd MMM");
         return date.format(formatter);
+    }
+
+    @SuppressLint("DefaultLocale")
+    public static String getToday(LocalDate selectedDate)
+    {
+        String currentDateStr = formattedToday(selectedDate);
+        return String.format("Day %d: %s", selectedDate.getDayOfYear(), currentDateStr);
     }
     public static ArrayList<LocalDate> daysInMonthArray()
     {
