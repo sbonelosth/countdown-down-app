@@ -2,6 +2,7 @@ package com.abumanga.countdowncalender;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,20 +48,38 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
     public void onBindViewHolder(@NonNull CalendarViewHolder holder, int position)
     {
         final LocalDate date = days.get(position);
+        final int currentDay = LocalDate.now().getDayOfMonth();
+        final int currentMonth = LocalDate.now().getMonthValue();
+        final int currentYear = LocalDate.now().getYear();
 
-        if (date == null)
-            holder.dayOfMonth.setText("");
-        else {
-            if (position % 7 == 0) {
+        holder.dayOfMonth.setText(String.valueOf(date.getDayOfMonth()));
+
+        if (date.equals(CalendarUtils.selectedDate))
+        {
+            holder.parentView.setBackground(context.getResources().getDrawable(R.drawable.current_day_bg));
+        }
+
+        if (date.getMonth().equals(CalendarUtils.selectedDate.getMonth()))
+        {
+            holder.dayOfMonth.setTextColor(context.getResources().getColor(R.color.white));
+            if (position % 7 == 0)
+            {
                 holder.dayOfMonth.setTextColor(context.getResources().getColor(R.color.red));
             }
-            holder.dayOfMonth.setText(String.valueOf(date.getDayOfMonth()));
-
-            if (date.equals(CalendarUtils.selectedDate)) {
-                holder.parentView.setBackground(context.getResources().getDrawable(R.drawable.current_day_bg));
+            if (date.getDayOfMonth() == currentDay && date.getMonthValue() == currentMonth && date.getYear() == currentYear)
+            {
                 holder.dayOfMonth.setTextColor(context.getResources().getColor(R.color.blue));
             }
         }
+        else
+        {
+            holder.dayOfMonth.setTextColor(Color.GRAY);
+            if (position % 7 == 0)
+            {
+                holder.dayOfMonth.setTextColor(context.getResources().getColor(R.color.red_transparent));
+            }
+        }
+
     }
 
     @Override
@@ -71,6 +90,6 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
 
     public interface OnItemListener
     {
-        void onItemClick(int position, String dayText, LocalDate date);
+        void onItemClick(int position, LocalDate date);
     }
 }

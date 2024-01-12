@@ -15,6 +15,7 @@
         android:textColor="@color/white"
         android:textAllCaps="true"
         android:letterSpacing="0.1"
+        android:fontFamily="@font/montserrat_regular"
         android:padding="8dp"
         android:layout_margin="8dp"/>
 
@@ -31,7 +32,8 @@
         android:textColorHint="#A6A6C6"
         android:textColorHighlight="@color/red"
         android:letterSpacing="0.1"
-        android:background="@drawable/event_label_bg"
+        android:fontFamily="@font/montserrat_regular"
+        android:background="@drawable/text_edit_bg"
         android:padding="8dp"/>
 
     <TextView
@@ -43,6 +45,7 @@
         android:textColor="@color/white"
         android:textAllCaps="true"
         android:letterSpacing="0.1"
+        android:fontFamily="@font/montserrat_regular"
         android:padding="8dp"
         android:layout_margin="8dp"/>
 
@@ -55,6 +58,7 @@
         android:textColor="@color/white"
         android:textAllCaps="true"
         android:letterSpacing="0.1"
+        android:fontFamily="@font/montserrat_regular"
         android:padding="8dp"
         android:layout_margin="8dp"/>
 

@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +37,14 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         initWidgets();
         CalendarUtils.selectedDate = LocalDate.now();
         setWeekView();
+
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View progressView = inflater.inflate(R.layout.activity_progress, (ViewGroup) getCurrentFocus(), false);
+        ProgressObject progressObject = new ProgressObject(progressView);
+        progressObject.countDown();
+
+        ViewGroup root = findViewById(R.id.root_weekly);
+        root.addView(progressView);
     }
 
     private void setWeekView()
@@ -88,12 +98,11 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     }
 
     @Override
-    public void onItemClick(int position, String dayText, LocalDate date)
+    public void onItemClick(int position, LocalDate date)
     {
         CalendarUtils.selectedDate = date;
         setWeekView();
-        String msg = today.getToday(CalendarUtils.selectedDate, dayText);
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, today.getToday(CalendarUtils.selectedDate), Toast.LENGTH_SHORT).show();
     }
 
     public void dailyAction(View view)

@@ -29,6 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="setMonthView"
             android:textAllCaps="true"
             android:textAlignment="viewEnd"
             android:textColor="@color/white"
@@ -37,161 +38,11 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:orientation="horizontal">
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:fontFamily="@font/montserrat_regular"
-                    android:id="@+id/months_rem"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginBottom="8dp"
-                    android:textAlignment="center"
-                    android:gravity="center"
-                    android:background="@drawable/remaining_bg"
-                    android:textColor="@color/black"
-                    android:letterSpacing="0.1"
-                    android:text="11" />
-
-                <TextView
-                    android:fontFamily="@font/montserrat_regular"
-                    android:id="@+id/weeks_rem"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginBottom="8dp"
-                    android:textAlignment="center"
-                    android:gravity="center"
-                    android:background="@drawable/remaining_bg"
-                    android:textColor="@color/black"
-                    android:text="3" />
-
-                <TextView
-                    android:fontFamily="@font/montserrat_regular"
-                    android:id="@+id/days_rem"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:textAlignment="center"
-                    android:gravity="center"
-                    android:background="@drawable/remaining_bg"
-                    android:textColor="@color/black"
-                    android:text="5" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:fontFamily="@font/montserrat_regular"
-                    android:id="@+id/months_rem_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:letterSpacing="0.1"
-                    android:text="months" />
-
-                <TextView
-                    android:fontFamily="@font/montserrat_regular"
-                    android:id="@+id/weeks_rem_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:letterSpacing="0.1"
-                    android:text="weeks" />
-
-                <TextView
-                    android:fontFamily="@font/montserrat_regular"
-                    android:id="@+id/days_rem_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:letterSpacing="0.1"
-                    android:text="days" />
-
-                <TextView
-                    android:fontFamily="@font/montserrat_regular"
-                    android:id="@+id/rem_txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    android:layout_marginTop="8dp"
-                    android:textColor="@color/white"
-                    android:letterSpacing="0.1"
-                    android:text="@string/remaining" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:fontFamily="@font/montserrat_regular"
-                    android:id="@+id/fading_year"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="8dp"
-                    android:gravity="bottom"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:letterSpacing="0.1"/>
-                <TextView
-                    android:fontFamily="@font/montserrat_regular"
-                    android:id="@+id/pending_year"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:gravity="bottom"
-                    android:layout_marginStart="8dp"
-                    android:letterSpacing="0.1"/>
-            </LinearLayout>
-
-            <ProgressBar
-                android:id="@+id/progress_bar"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:progressDrawable="@drawable/custom_progress"
-                android:max="100"
-                android:progress="80" />
-            <TextView
-                android:fontFamily="@font/montserrat_regular"
-                android:id="@+id/progress_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/progress"
-                android:textAllCaps="true"
-                android:letterSpacing="0.1"
-                android:textAlignment="center"/>
-        </LinearLayout>
-    </LinearLayout>
+        android:orientation="vertical"/>
 
     <LinearLayout
         android:layout_width="match_parent"

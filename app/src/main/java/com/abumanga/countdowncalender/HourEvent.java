@@ -8,7 +8,8 @@ public class HourEvent
     LocalTime time;
     ArrayList<Event> events;
 
-    public HourEvent(LocalTime time, ArrayList<Event> events) {
+    public HourEvent(LocalTime time, ArrayList<Event> events)
+    {
         this.time = time;
         this.events = events;
     }

@@ -4,7 +4,9 @@ import static com.abumanga.countdowncalender.CalendarUtils.selectedDate;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -29,6 +31,14 @@ public class DailyViewActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily_view);
         initWidgets();
+
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View progressView = inflater.inflate(R.layout.activity_progress, (ViewGroup) getCurrentFocus(), false);
+        ProgressObject progressObject = new ProgressObject(progressView);
+        progressObject.countDown();
+
+        ViewGroup root = findViewById(R.id.root_daily);
+        root.addView(progressView);
     }
 
     private void initWidgets()

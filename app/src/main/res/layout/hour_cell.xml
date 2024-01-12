@@ -27,6 +27,7 @@
             android:lines="2"
             android:gravity="center"
             android:background="@drawable/hour_event_bg"
+            android:textColor="@color/white"
             android:text="Event 1"/>
 
         <TextView
@@ -38,6 +39,7 @@
             android:lines="2"
             android:gravity="center"
             android:background="@drawable/hour_event_bg"
+            android:textColor="@color/white"
             android:text="Event 2"/>
 
         <TextView
@@ -49,6 +51,7 @@
             android:lines="2"
             android:gravity="center"
             android:background="@drawable/hour_event_bg"
+            android:textColor="@color/white"
             android:text="Event 3"/>
 
     </LinearLayout>

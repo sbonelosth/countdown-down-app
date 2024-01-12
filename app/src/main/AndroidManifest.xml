@@ -13,6 +13,9 @@
         android:theme="@style/Theme.CountdownCalender"
         tools:targetApi="31">
         <activity
+            android:name=".ProgressObject"
+            android:exported="false" />
+        <activity
             android:name=".DailyViewActivity"
             android:exported="false" />
         <activity

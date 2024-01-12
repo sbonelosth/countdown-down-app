@@ -12,21 +12,21 @@
     <string name="daily_view">daily view</string>
 
     <string-array name="quotes">
-        <item>The trouble is, you think you think you have time.\n~ J. Kornfield</item>
-        <item>Time is extremely valuable.\n~ Kanye West</item>
-        <item>There\'s never enough time to do all the nothing you want.\n~ B. Watterson</item>
-        <item>Oh yes, the past can hurt. But you can either run from it or learn from it.\n~ Rafiki (The Lion King)</item>
-        <item>Today is a good day to try.\n~ Quasimodo (The Hunchback of Notre Dame)</item>
-        <item>You may not own this day, but you can use it.\n~ H. Mackey</item>
-        <item>Time is money.\n~ B. Franklin</item>
-        <item>Time is a storm in which we are all lost.\n~ W. C. Williams</item>
-        <item>Suspect each moment, for it is a thief, tiptoeing away with more than it brings.\n~ J. Updike</item>
-        <item>Men talk of killing time, while time quietly kills them.\n~ D. Boucicault</item>
-        <item>Regret for wasted time is more wasted time.\n~ M. Cooley</item>
-        <item>Time spent with cats is never wasted.\n~ Colette</item>
-        <item>The way we spend our time defines who we are.\n~ J. Estrin</item>
-        <item>It\'s not that we have little time, but more that we waste a good deal of it.\n~ Seneca</item>
-        <item>Either you run the day, or the day runs you.\n~ J. Rohn</item>
-        <item>If we take care of the moments, the years will take care of themselves.\n~ M. Edgeworth</item>
+        <item>The trouble is, you think you think you have time. ~ J. Kornfield</item>
+        <item>Time is extremely valuable. ~ Kanye West</item>
+        <item>There\'s never enough time to do all the nothing you want. ~ B. Watterson</item>
+        <item>Oh yes, the past can hurt. But you can either run from it or learn from it. ~ Rafiki (The Lion King)</item>
+        <item>Today is a good day to try. ~ Quasimodo (The Hunchback of Notre Dame)</item>
+        <item>You may not own this day, but you can use it. ~ H. Mackey</item>
+        <item>Time is money. ~ B. Franklin</item>
+        <item>Time is a storm in which we are all lost. ~ W. C. Williams</item>
+        <item>Suspect each moment, for it is a thief, tiptoeing away with more than it brings. ~ J. Updike</item>
+        <item>Men talk of killing time, while time quietly kills them. ~ D. Boucicault</item>
+        <item>Regret for wasted time is more wasted time. ~ M. Cooley</item>
+        <item>Time spent with cats is never wasted. ~ Colette</item>
+        <item>The way we spend our time defines who we are. ~ J. Estrin</item>
+        <item>It\'s not that we have little time, but more that we waste a good deal of it. ~ Seneca</item>
+        <item>Either you run the day, or the day runs you. ~ J. Rohn</item>
+        <item>If we take care of the moments, the years will take care of themselves. ~ M. Edgeworth</item>
     </string-array>
 </resources>

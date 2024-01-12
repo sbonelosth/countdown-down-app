@@ -37,30 +37,43 @@ public class CalendarUtils
         return date.format(formatter);
     }
 
-    public static ArrayList<LocalDate> daysInMonthArray(LocalDate date)
+    public static String formattedToday(LocalDate date)
+    {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE, dd MMM");
+        return date.format(formatter);
+    }
+    public static ArrayList<LocalDate> daysInMonthArray()
     {
         ArrayList<LocalDate> daysInMonthArray = new ArrayList<>();
-        YearMonth yearMonth = YearMonth.from(date);
+        YearMonth yearMonth = YearMonth.from(selectedDate);
         int daysInMonth = yearMonth.lengthOfMonth();
+
+        LocalDate previousMonth = selectedDate.minusMonths(1);
+        LocalDate nextMonth = selectedDate.plusMonths(1);
+
+        YearMonth previousYearMonth = YearMonth.from(previousMonth);
+        int previousDaysInMonth = previousYearMonth.lengthOfMonth();
+
+
         LocalDate firstOfMonth = CalendarUtils.selectedDate.withDayOfMonth(1);
         int dayOfWeek = firstOfMonth.getDayOfWeek().getValue();
 
         int rows = 42;
         for (int i = 1; i <= rows; i++)
         {
-            if (i <= dayOfWeek || i > daysInMonth + dayOfWeek)
+            if (i <= dayOfWeek)
             {
                 if (i > 35 && daysInMonth + dayOfWeek <= 35) rows = 35;
                 else
                 {
                     rows = 42;
-                    daysInMonthArray.add(null);
+                    daysInMonthArray.add(LocalDate.of(previousMonth.getYear(), previousMonth.getMonthValue(), previousDaysInMonth + i - dayOfWeek));
                 }
             }
+            else if (i > daysInMonth + dayOfWeek)
+                daysInMonthArray.add(LocalDate.of(nextMonth.getYear(), nextMonth.getMonthValue(), i - dayOfWeek - daysInMonth));
             else
-            {
                 daysInMonthArray.add(LocalDate.of(selectedDate.getYear(), selectedDate.getMonthValue(), i - dayOfWeek));
-            }
         }
         return daysInMonthArray;
     }

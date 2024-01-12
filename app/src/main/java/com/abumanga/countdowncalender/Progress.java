@@ -36,69 +36,33 @@ public class Progress
     int fminutes = (int) (remaining / 60) % 60;
     int fseconds = (int) remaining % 60;
 
-    public void setProgress(TextView remainingMonths, TextView remainingWeeks, TextView remainingDays,
-                            TextView remMonthsLabel, TextView remWeeksLabel, TextView remDaysLabel)
+    public void setProgress(ProgressObject progressObject)
     {
+        TextView remainingMonths = progressObject.getRemainingMonths();
+        TextView remainingWeeks = progressObject.getRemainingWeeks();
+        TextView remainingDays = progressObject.getRemainingDays();
+        TextView remMonthsLabel = progressObject.getRemMonthsLabel();
+        TextView remWeeksLabel = progressObject.getRemWeeksLabel();
+        TextView remDaysLabel = progressObject.getRemDaysLabel();
+
         int[] fvalues = { fmonths, fweeks, fdays, fhours, fminutes, fseconds };
+        TextView[] remainingViews = { remainingMonths, remainingWeeks, remainingDays };
+        TextView[] remainingLabels = { remMonthsLabel, remWeeksLabel, remDaysLabel };
 
-        for (int i = 0; i < labels.length; i++)
+        for (int i = 0; i < remainingViews.length; i++)
         {
-            if (fvalues[i] > 0)
+            int value = fvalues[i];
+            String label = labels[i];
+
+            if (value == 0)
             {
-                if (i < 4)
-                {
-                    remainingMonths.setText(String.valueOf(fvalues[i]));
-                    remMonthsLabel.setText(fvalues[i] != 1 ? labels[i] + pluralize : labels[i]);
-                    i++;
-
-                    if (fvalues[i] == 0)
-                    {
-                        remainingWeeks.setVisibility(View.GONE);
-                        remWeeksLabel.setVisibility(View.GONE);
-                    }
-                    remainingWeeks.setText(String.valueOf(fvalues[i]));
-                    remWeeksLabel.setText(fvalues[i] != 1 ? labels[i] + pluralize : labels[i]);
-                    i++;
-
-                    if (fvalues[i] == 0)
-                    {
-                        remainingDays.setVisibility(View.GONE);
-                        remDaysLabel.setVisibility(View.GONE);
-                    }
-                    remainingDays.setText(String.valueOf(fvalues[i]));
-                    remDaysLabel.setText(fvalues[i] != 1 ? labels[i] + pluralize : labels[i]);
-                    break;
-                }
-                else if (i == 4)
-                {
-                    remainingDays.setVisibility(View.GONE);
-                    remDaysLabel.setVisibility(View.GONE);
-
-                    remainingMonths.setText(String.valueOf(fvalues[i]));
-                    remMonthsLabel.setText(fvalues[i] != 1 ? labels[i] + pluralize : labels[i]);
-                    i++;
-
-                    if (fvalues[i] == 0)
-                    {
-                        remainingWeeks.setVisibility(View.GONE);
-                        remWeeksLabel.setVisibility(View.GONE);
-                    }
-
-                    remainingWeeks.setText(String.valueOf(fvalues[i]));
-                    remWeeksLabel.setText(fvalues[i] != 1 ? labels[i] + pluralize : labels[i]);
-                    break;
-                }
-                else
-                {
-                    remainingDays.setVisibility(View.GONE);
-                    remDaysLabel.setVisibility(View.GONE);
-                    remainingWeeks.setVisibility(View.GONE);
-                    remWeeksLabel.setVisibility(View.GONE);
-
-                    remainingMonths.setText(String.valueOf(fvalues[i]));
-                    remMonthsLabel.setText(fvalues[i] != 1 ? labels[i] + pluralize : labels[i]);
-                    break;
-                }
+                remainingViews[i].setVisibility(View.GONE);
+                remainingLabels[i].setVisibility(View.GONE);
+            }
+            else
+            {
+                remainingViews[i].setText(String.valueOf(value));
+                remainingLabels[i].setText((value != 1) ? label + pluralize : label);
             }
         }
     }
