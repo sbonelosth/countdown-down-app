@@ -2,8 +2,6 @@ package com.abumanga.countdowncalender;
 
 import android.annotation.SuppressLint;
 
-import androidx.recyclerview.widget.GridLayoutManager;
-
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -46,7 +44,7 @@ public class CalendarUtils
     }
 
     @SuppressLint("DefaultLocale")
-    public static String getToday(LocalDate selectedDate)
+    public static String getSelectedDate(LocalDate selectedDate)
     {
         String currentDateStr = formattedToday(selectedDate);
         return String.format("Day %d: %s", selectedDate.getDayOfYear(), currentDateStr);

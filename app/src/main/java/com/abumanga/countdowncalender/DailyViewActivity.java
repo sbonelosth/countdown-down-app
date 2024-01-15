@@ -111,13 +111,4 @@ public class DailyViewActivity extends AppCompatActivity
         startActivity(new Intent(this, WeekViewActivity.class));
     }
 
-    @Override
-    public void onBackPressed()
-    {
-        super.onBackPressed();
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-    }
-
 }

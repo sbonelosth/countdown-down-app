@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +20,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener
 {
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     TextView eventLabel;
     TextView dayOfYear, currentDate;
 
+    private boolean exitPressedOnce = false;
+    private Handler handler = new Handler();
     @SuppressLint({"SourceLockedOrientationActivity", "ClickableViewAccessibility"})
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -109,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     {
         selectedDate = date;
         setMonthView();
-        Toast.makeText(this, CalendarUtils.getToday(selectedDate), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, CalendarUtils.getSelectedDate(selectedDate), Toast.LENGTH_SHORT).show();
     }
 
     public void weeklyAction(View view)
@@ -124,8 +127,48 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     }
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
+    public void onBackPressed()
+    {
+        if (exitPressedOnce)
+        {
+            super.onBackPressed();
+            return;
+        }
+
+        this.exitPressedOnce = true;
+
+        long monthDiff = ChronoUnit.MONTHS.between(LocalDate.now().withDayOfMonth(1), selectedDate.withDayOfMonth(1));
+        if (monthDiff > 0)
+            selectedDate = selectedDate.minusMonths(monthDiff);
+        else if (monthDiff < 0)
+            selectedDate = selectedDate.plusMonths(-monthDiff);
+        else
+            selectedDate = LocalDate.now();
+
+        setMonthView();
+
+        Toast.makeText(this, "Press back again to exit", Toast.LENGTH_LONG).show();
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                exitPressedOnce = false;
+            }
+        }, 3000);
+    }
+
+    private void setCurrentMonth(LocalDate selectedDate)
+    {
+
+    }
+
+    public void upcomingAction(View view)
+    {
+
+    }
+
+    public void newEventAction(View view)
+    {
+        startActivity(new Intent(this, EventEditActivity.class));
     }
 }

@@ -1,181 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/background"
-    android:backgroundTint="#BB000000"
-    android:backgroundTintMode="src_atop"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/root"
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:orientation="vertical"/>
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        android:backgroundTint="#BB000000"
+        android:backgroundTintMode="src_atop"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
-        <Button
+        <LinearLayout
+            android:id="@+id/root"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="vertical" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/custom_progress"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:letterSpacing="0.1"
+                android:onClick="weeklyAction"
+                android:text="@string/weekly_btn_text"
+                android:textAllCaps="true"
+                android:textColor="@color/red"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/custom_progress"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:letterSpacing="0.1"
+                android:onClick="upcomingAction"
+                android:text="@string/upcoming_events"
+                android:textAllCaps="true"
+                android:textColor="@color/red"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/baseline_arrow_back_ios_new_24"
+                android:onClick="previousMonth"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:theme="@style/Buttons" />
+
+            <TextView
+                android:id="@+id/month_year_text"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:letterSpacing="0.1"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <Button
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/baseline_arrow_forward_ios_24"
+                android:onClick="nextMonth"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:theme="@style/Buttons" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:gravity="center"
-            android:text="@string/weekly_btn_text"
-            android:textAllCaps="true"
-            android:textStyle="bold"
-            android:textColor="@color/red"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="S"
+                android:textAlignment="center"
+                android:textColor="@color/red_transparent"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="M"
+                android:textAlignment="center"
+                android:textColor="@color/white_transparent"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="T"
+                android:textAlignment="center"
+                android:textColor="@color/white_transparent"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="W"
+                android:textAlignment="center"
+                android:textColor="@color/white_transparent"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="T"
+                android:textAlignment="center"
+                android:textColor="@color/white_transparent"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="F"
+                android:textAlignment="center"
+                android:textColor="@color/white_transparent"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="S"
+                android:textAlignment="center"
+                android:textColor="@color/white_transparent"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/calendar_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:paddingBottom="2dp" />
+
+        <TextView
+            android:id="@+id/event_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="center|center_vertical"
             android:letterSpacing="0.1"
-            android:fontFamily="@font/montserrat_regular"
-            android:background="@drawable/custom_progress"
-            android:onClick="weeklyAction"/>
+            android:padding="8dp"
+            android:text="@string/app_name"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
+
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="16dp"
-            android:background="@drawable/baseline_arrow_back_ios_new_24"
-            android:theme="@style/Buttons"
-            android:textStyle="bold"
-            android:textSize="30sp"
-            android:onClick="previousMonth"/>
-
-        <TextView
-            android:id="@+id/month_year_text"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:textAllCaps="true"
-            android:textSize="14sp"
-            android:letterSpacing="0.1"
-            android:fontFamily="@font/montserrat_regular"
-            android:textColor="@color/white"/>
-
-        <Button
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/baseline_arrow_forward_ios_24"
-            android:theme="@style/Buttons"
-            android:textStyle="bold"
-            android:textSize="30sp"
-            android:onClick="nextMonth"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="8dp">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:textColor="@color/red_transparent"
-            android:fontFamily="@font/montserrat_regular"
-            android:text="S"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:textColor="@color/white_transparent"
-            android:fontFamily="@font/montserrat_regular"
-            android:text="M"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:textColor="@color/white_transparent"
-            android:fontFamily="@font/montserrat_regular"
-            android:text="T"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:textColor="@color/white_transparent"
-            android:fontFamily="@font/montserrat_regular"
-            android:text="W"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:textColor="@color/white_transparent"
-            android:fontFamily="@font/montserrat_regular"
-            android:text="T"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:textColor="@color/white_transparent"
-            android:fontFamily="@font/montserrat_regular"
-            android:text="F"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:textColor="@color/white_transparent"
-            android:fontFamily="@font/montserrat_regular"
-            android:text="S"/>
-    </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/calendar_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginStart="8dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="64dp"
         android:layout_marginEnd="8dp"
-        android:paddingBottom="2dp" />
+        android:contentDescription="@string/add_event"
+        android:onClick="newEventAction"
+        android:src="@drawable/ic_add"
+        android:theme="@style/FabTheme" />
 
-    <TextView
-        android:fontFamily="@font/montserrat_regular"
-        android:id="@+id/event_label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:gravity="center|center_vertical"
-        android:textAlignment="center"
-        android:padding="8dp"
-        android:textColor="@color/white"
-        android:letterSpacing="0.1"
-        android:text="@string/app_name"/>
-
-</LinearLayout>
+</FrameLayout>

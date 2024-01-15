@@ -6,10 +6,12 @@
     <string name="new_event_txt">new event</string>
     <string name="event_name">Event Name</string>
     <string name="save">save</string>
-    <string name="time">time:</string>
+    <string name="time">pick time</string>
     <string name="new_event">new event</string>
-    <string name="date">date:</string>
+    <string name="date">pick date</string>
     <string name="daily_view">daily view</string>
+    <string name="upcoming_events">upcoming</string>
+    <string name="add_event">Add Event</string>
 
     <string-array name="quotes">
         <item>The trouble is, you think you think you have time. ~ J. Kornfield</item>

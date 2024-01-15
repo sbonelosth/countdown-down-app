@@ -22,7 +22,7 @@
     <EditText
         android:id="@+id/event_edit_input"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_margin="8dp"
         android:ems="15"
@@ -75,8 +75,7 @@
         android:letterSpacing="0.1"
         android:fontFamily="@font/montserrat_regular"
         android:background="@drawable/custom_progress"
+        android:enabled="false"
         android:onClick="saveEventAction"/>
-
-
 
 </LinearLayout>

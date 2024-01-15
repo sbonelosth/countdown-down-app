@@ -7,11 +7,30 @@
         <item name="colorPrimary">@color/accent</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorSurface">@color/white</item>
+        <item name="floatingActionButtonPrimaryStyle">@style/FabTheme</item>
+        <item name="android:timePickerDialogTheme">@style/DateTimePicker</item>
+        <item name="android:datePickerDialogTheme">@style/DateTimePicker</item>
     </style>
 
     <style name="Buttons" parent="Theme.Material3.Dark.NoActionBar">
         <!-- Customizing the light theme here. -->
         <item name="colorPrimary">@color/red</item>
+    </style>
+
+    <style name="FabTheme" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="backgroundTint">@color/accent</item>
+        <item name="tint">@color/red</item>
+        <item name="elevation">8dp</item>
+        <item name="overlay">true</item>
+    </style>
+    
+    <style name="DateTimePicker" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorAccent">@color/red</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_width">match_parent</item>
     </style>
 
     <style name="Theme.CountdownCalender" parent="Base.Theme.CountdownCalender" />

@@ -100,20 +100,11 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     {
         selectedDate = date;
         setWeekView();
-        Toast.makeText(this, CalendarUtils.getToday(selectedDate), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, CalendarUtils.getSelectedDate(selectedDate), Toast.LENGTH_SHORT).show();
     }
 
     public void dailyAction(View view)
     {
         startActivity(new Intent(this, DailyViewActivity.class));
-    }
-
-    @Override
-    public void onBackPressed()
-    {
-        super.onBackPressed();
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
     }
 }
